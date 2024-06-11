@@ -18,16 +18,24 @@ defmodule MathsTests do
     assert Maths.subtract(5, 3) == 2
   end
 
-  test "factorial" do
-    assert Maths.Factorial.factorial(4) == 24
-    assert Maths.Factorial.factorial(0) == 1
+  test "factoriall" do
+    assert Maths.Factoriall.factoriall(4) == 24
+    assert Maths.Factoriall.factoriall(0) == 1
     assert_raise FunctionClauseError, fn ->
-      Maths.Factorial.factorial(-5)
+      Maths.Factoriall.factoriall(-5)
     end
   end
 
-  test "sum_factorial sums a list of factorials" do
-    assert Maths.sum_factorials([3, 4]) == 30
-    assert Maths.sum_factorials([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 4_037_913
+  test "sum_factoriall sums a list of factorialls" do
+    assert Maths.sum_factorialls([3, 4]) == 30
+    assert Maths.sum_factorialls([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 4_037_913
+  end
+
+  test "get_all_factors returns a list containing each number the given number can be divided by" do
+    assert Enum.sort(Maths.get_all_factors(-2)) == []
+    assert Enum.sort(Maths.get_all_factors(2)) == [1, 2]
+    assert Enum.sort(Maths.get_all_factors(3)) == [1, 3]
+    assert Enum.sort(Maths.get_all_factors(4)) == [1, 2, 4]
+    assert Enum.sort(Maths.get_all_factors(12)) == [1, 2, 3, 4, 6, 12]
   end
 end
